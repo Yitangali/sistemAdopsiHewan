@@ -198,7 +198,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Available Pet"/>
+        <Property name="text" type="java.lang.String" value="AVAILABLE PET"/>
       </Properties>
     </Component>
   </SubComponents>

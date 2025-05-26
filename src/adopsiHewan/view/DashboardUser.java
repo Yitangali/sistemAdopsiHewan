@@ -89,7 +89,7 @@ public class DashboardUser extends javax.swing.JFrame {
 
         jButton5.setText("Detail");
 
-        jLabel5.setText("Available Pet");
+        jLabel5.setText("AVAILABLE PET");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
