@@ -8,18 +8,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import static javax.management.Query.value;
+
+import adopsiHewan.model.AdopsiModel;
+import adopsiHewan.view.AdopsiView;
+import adopsiHewan.dao.AdopsiDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 
 public class AdopsiController {
+    private AdopsiModel model;
+    private AdopsiView view;
+    private AdopsiDAO dao;
+    private String currentUser;
+    private Date currentTimestamp;
     private AdopsiDAO adopsiDAO;
 
     // Konstruktor untuk inisialisasi DAO
-    public AdopsiController() {
+    public AdopsiController(AdopsiModel model, AdopsiView view, String currentUser, Date currentTimestamp) {
         try {
             adopsiDAO = new AdopsiDAOImpl();
         } catch (SQLException e) {
             System.out.println("Gagal inisialisasi DAO: " + e.getMessage());
         }
+        
+        this.model = model;
+        this.view = view;
+        this.dao = new AdopsiDAO();
+        this.currentUser = currentUser;
+        this.currentTimestamp = currentTimestamp;
+        
+        initView();
+        this.view.addSubmitListener(new SubmitListener());
+        this.view.addBatalListener(e -> view.dispose());
     }
 
     // Tambah Data Adopsi
@@ -70,22 +95,54 @@ public class AdopsiController {
     public void hapusAdopsi(int idAdopsi) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    public void updateAdopsiField(int idAdopsi, int column, Object newValue) {
-        String field = switch (column) {
-        case 1 -> "id_user";
-        case 2 -> "id_hewan";
-        case 3 -> "tanggal_ajuan";
-        case 4 -> "status";
-        case 5 -> "catatan";
-        default -> "";
-        };
-
-
+    
+    private void initView() {
+        try {
+            List<String> hewanList = dao.getAvailableHewan();
+            view.addHewan("- Pilih Hewan -");
+            for (String hewan : hewanList) {
+                view.addHewan(hewan);
+            }
+        } catch (SQLException e) {
+            view.showError("Error loading hewan: " + e.getMessage());
+        }
     }
-
-    public void updateAdopsi(Adopsi adopsi) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    class SubmitListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (validateForm()) {
+                try {
+                    String selectedHewan = view.getSelectedHewanText();
+                    int hewanId = Integer.parseInt(selectedHewan.split(" - ")[0]);
+                    
+                    model.setUserId(currentUser);
+                    model.setIdHewan(hewanId);
+                    model.setTanggalAjuan(currentTimestamp);
+                    model.setCatatan(view.getAlasanAdopsi());
+                    
+                    dao.save(model);
+                    dao.updateHewanStatus(hewanId, "proses");
+                    
+                    view.showSuccess("Form adopsi berhasil disubmit!");
+                    view.dispose();
+                    
+                } catch (Exception ex) {
+                    view.showError("Error menyimpan data: " + ex.getMessage());
+                }
+            }
+        }
     }
-      
+    
+    private boolean validateForm() {
+        if (view.getSelectedHewan() == 0) {
+            view.showError("Silakan pilih hewan!");
+            return false;
+        }
+        if (view.getAlasanAdopsi().trim().isEmpty()) {
+            view.showError("Alasan adopsi harus diisi!");
+            return false;
+        }
+        return true;
+    }
 }
