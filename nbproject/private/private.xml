@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/config/DBConnection.java</file>
             <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/config/TestDBConnection.java</file>
@@ -21,6 +22,8 @@
             <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/impl/UserDAOImpl.java</file>
             <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenHewanView.java</file>
             <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/DashboardAdminView.java</file>
+=======
+>>>>>>> 1b6e6d4753364bd3acda75a9de71b843ac13bbad
         </group>
     </open-files>
 </project-private>
