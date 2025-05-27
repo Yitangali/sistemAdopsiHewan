@@ -19,7 +19,7 @@ public class User {
         this.role = role;
     }
 
-    // Getter dan Setter
+    
     public int getIdUser() { return idUser; }
     public void setIdUser(int idUser) { this.idUser = idUser; }
 
