@@ -27,7 +27,7 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtUsernameEmail = new javax.swing.JTextField();
+        txtUsernameLogin = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
         passwordLogin = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
@@ -35,9 +35,9 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtUsernameEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameEmailActionPerformed(evt);
+                txtUsernameLoginActionPerformed(evt);
             }
         });
 
@@ -56,7 +56,7 @@ public class LoginView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(285, 285, 285)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsernameEmail)
+                    .addComponent(txtUsernameLogin)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(buttonLogin))
@@ -77,7 +77,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(121, 121, 121)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsernameEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,9 +107,9 @@ public class LoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameEmailActionPerformed
+    private void txtUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameEmailActionPerformed
+    }//GEN-LAST:event_txtUsernameLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +152,6 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordLogin;
-    private javax.swing.JTextField txtUsernameEmail;
+    private javax.swing.JTextField txtUsernameLogin;
     // End of variables declaration//GEN-END:variables
 }
