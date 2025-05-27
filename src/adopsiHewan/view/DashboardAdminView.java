@@ -205,7 +205,7 @@ public class DashboardAdminView extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel13)
                     .addComponent(jLabel16))
-                .addGap(111, 111, 111)
+                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
