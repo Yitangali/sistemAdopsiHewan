@@ -9,5 +9,6 @@ public interface AdopsiDAO {
     Adopsi getAdopsiById(int id) throws SQLException;
     List<Adopsi> getAllAdopsi() throws SQLException;
     List<Adopsi> getAdopsiByStatus(String status) throws SQLException;
+    public void updateAdopsi(int idAdopsi, String field, Object value) throws SQLException;
 
 }
