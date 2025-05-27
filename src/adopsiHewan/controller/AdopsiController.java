@@ -5,6 +5,7 @@ import adopsiHewan.dao.impl.AdopsiDAOImpl;
 import adopsiHewan.model.Adopsi;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,5 +50,23 @@ public class AdopsiController {
             System.out.println("Error mendapatkan semua adopsi: " + e.getMessage());
             return null;
         }
+    }
+    
+    public List<Adopsi> getAdopsiByStatus(String status) {
+    try {
+        return adopsiDAO.getAdopsiByStatus(status);
+    } catch (SQLException e) {
+        System.out.println("Error mendapatkan adopsi berdasarkan status: " + e.getMessage());
+        return new ArrayList<>();
+    }
+}
+
+
+    public void ubahStatusAdopsi(int idAdopsi, String newStatus) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void hapusAdopsi(int idAdopsi) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

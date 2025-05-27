@@ -55,4 +55,23 @@ public class AdopsiDAOImpl implements AdopsiDAO {
         }
         return adopsiList;
     }
+    
+    @Override
+    public List<Adopsi> getAdopsiByStatus(String status) throws SQLException {
+        List<Adopsi> adopsiList = new ArrayList<>();
+        String query = "SELECT * FROM adopsi WHERE status = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, status);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    adopsiList.add(new Adopsi(
+                        rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"),
+                        rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")
+                    ));
+                }
+            }
+        }
+        return adopsiList;
+    }
 }
