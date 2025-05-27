@@ -1,6 +1,5 @@
-package adopsiHewan.test;
+package adopsiHewan.config;
 
-import adopsiHewan.config.DBConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 

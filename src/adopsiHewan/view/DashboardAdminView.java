@@ -4,6 +4,8 @@
  */
 package adopsiHewan.view;
 
+import adopsiHewan.controller.DashboardAdminController;
+import javax.swing.*;
 /**
  *
  * @author ASUS
@@ -13,8 +15,11 @@ public class DashboardAdminView extends javax.swing.JFrame {
     /**
      * Creates new form DashboardAdminView
      */
-    public DashboardAdminView() {
+    private DashboardAdminController dba;
+    public DashboardAdminView(DashboardAdminController dba) {
         initComponents();
+        this.dba = dba;
+        loadDataDashboard();
     }
 
     /**
@@ -32,8 +37,8 @@ public class DashboardAdminView extends javax.swing.JFrame {
         dogPict1 = new javax.swing.JLabel();
         dogPict4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        txtHewanDiadopsi = new javax.swing.JLabel();
+        txtHewanMasuk = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -43,8 +48,8 @@ public class DashboardAdminView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        txtJmlHewan = new javax.swing.JLabel();
+        txtJmlPengguna = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -76,9 +81,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
 
         jLabel1.setText("DASHBOARD");
 
-        jLabel3.setText("Cooler Diavolo");
+        txtHewanDiadopsi.setText("Cooler Diavolo");
 
-        jLabel6.setText("Diavolo");
+        txtHewanMasuk.setText("Diavolo");
 
         jButton1.setText("Dashboard");
 
@@ -98,9 +103,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
 
         jLabel13.setText(":");
 
-        jLabel14.setText("...");
+        txtJmlHewan.setText("...");
 
-        jLabel15.setText("...");
+        txtJmlPengguna.setText("...");
 
         jLabel16.setText("...");
 
@@ -155,20 +160,20 @@ public class DashboardAdminView extends javax.swing.JFrame {
                                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtJmlHewan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtJmlPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(24, 24, 24)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
+                                            .addComponent(txtHewanMasuk))
                                         .addGap(138, 138, 138)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel5)
-                                            .addComponent(jLabel3)))))
+                                            .addComponent(txtHewanDiadopsi)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(333, 333, 333)
                                 .addComponent(jLabel1))
@@ -194,12 +199,12 @@ public class DashboardAdminView extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(jLabel14)))
+                        .addComponent(txtJmlHewan)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel15))
+                    .addComponent(txtJmlPengguna))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -218,11 +223,11 @@ public class DashboardAdminView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
+                        .addComponent(txtHewanMasuk))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
+                        .addComponent(txtHewanDiadopsi)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jLabel17)
                 .addGap(14, 14, 14))
@@ -257,7 +262,6 @@ public class DashboardAdminView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -265,6 +269,27 @@ public class DashboardAdminView extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void loadDataDashboard() {
+        String jmlHewan = Integer.toString(dba.getJumlahHewan());
+        txtJmlHewan.setText(jmlHewan);
+        String jmlUser = Integer.toString(dba.getJumlahPengguna());
+        txtJmlPengguna.setText(jmlUser);
+        String jmlDiadopsi = Integer.toString(dba.getJumlahHewanDiadopsi());
+        txtHewanDiadopsi.setText(jmlDiadopsi);
+        
+    }
+
+    /*private void setImageToLabel(JLabel label, String path) {
+        File imgFile = new File(path);
+        if (imgFile.exists()) {
+            ImageIcon icon = new ImageIcon(path);
+            Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            label.setIcon(new ImageIcon(img));
+        } else {
+            label.setIcon(new ImageIcon("src/images/default.jpg"));
+        }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dogPict1;
@@ -279,19 +304,19 @@ public class DashboardAdminView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel txtHewanDiadopsi;
+    private javax.swing.JLabel txtHewanMasuk;
+    private javax.swing.JLabel txtJmlHewan;
+    private javax.swing.JLabel txtJmlPengguna;
     // End of variables declaration//GEN-END:variables
 }
