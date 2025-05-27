@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static javax.management.Query.value;
 
 public class AdopsiController {
     private AdopsiDAO adopsiDAO;
@@ -69,4 +70,22 @@ public class AdopsiController {
     public void hapusAdopsi(int idAdopsi) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public void updateAdopsiField(int idAdopsi, int column, Object newValue) {
+        String field = switch (column) {
+        case 1 -> "id_user";
+        case 2 -> "id_hewan";
+        case 3 -> "tanggal_ajuan";
+        case 4 -> "status";
+        case 5 -> "catatan";
+        default -> "";
+        };
+
+
+    }
+
+    public void updateAdopsi(Adopsi adopsi) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+      
 }

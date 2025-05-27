@@ -24,7 +24,10 @@
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/controller/AdopsiController.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/RegisterView.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenAdopsiView.java</file>
-            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenAdmin.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/util/PasswordUtils.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/controller/UserController.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/dao/impl/UserDAOImpl.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenAdopsi.java</file>
         </group>
     </open-files>
 </project-private>
