@@ -2,30 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/config/DBConnection.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/config/TestDBConnection.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/start.txt</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/LoginView.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/RegisterView.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/DashboardUser.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/DetailHewanView.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/model/Adopsi.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/model/Hewan.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/AdopsiDAO.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/impl/AdopsiDAOImpl.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/model/User.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/model/RiwayatAdopsi.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/HewanDAO.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/RiwayatAdopsiDAO.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/dao/impl/UserDAOImpl.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenHewanView.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Documents/NetBeansProjects/sistemAdopsiHewan/src/adopsiHewan/view/DashboardAdminView.java</file>
-=======
->>>>>>> 1b6e6d4753364bd3acda75a9de71b843ac13bbad
-=======
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/dao/impl/RiwayatAdopsiDAOImpl.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/dao/impl/AdopsiDAOImpl.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/dao/impl/HewanDAOImpl.java</file>
@@ -44,8 +21,10 @@
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/LoginView.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/DashboardAdminView.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/DashboardUser.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/controller/AdopsiController.java</file>
             <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/RegisterView.java</file>
->>>>>>> 23fc494 (blub-blub menambahkan controller ya bre)
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenAdopsiView.java</file>
+            <file>file:/C:/Users/M%20Tiyas%20F%20Akbar/sistemAdopsiHewan/src/adopsiHewan/view/ManajemenAdmin.java</file>
         </group>
     </open-files>
 </project-private>
