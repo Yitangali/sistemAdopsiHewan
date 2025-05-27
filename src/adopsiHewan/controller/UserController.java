@@ -14,7 +14,7 @@ import adopsiHewan.util.Validator;
  * @author LENOVO
  */
 public class UserController {
-    private userDAO userDAO = new userDAOImpl();
+    private UserDAO userDAO = new UserDAOImpl();
     
     public boolean register(String username, String email, String password, String confirmPassword) throws Exception {
         if (!Validator.isNotEmpty(username) || !Validator.isNotEmpty(email) || !Validator.isNotEmpty(Password) || !Validator.isNotEmpty(confirmPassword)) {
@@ -56,5 +56,12 @@ public class UserController {
         if (!Validator.isNotEmpty(email) || !Validator.isNotEmpty(password)) {
             throw new Exception("Email dan password haru diisi.");
         }
+        
+        User user = UserDAO.loginUser(email, password);
+        if (user == null) {
+            throw new Exception("Email atau Password salah.");
+        }
+        
+        return user;
     }
 }
