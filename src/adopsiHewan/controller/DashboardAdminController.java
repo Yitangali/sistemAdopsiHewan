@@ -5,16 +5,27 @@
 package adopsiHewan.controller;
 
 import adopsiHewan.dao.DashboardAdminDAO;
+import java.util.List;
+import adopsiHewan.dao.Interface.InDashbAdmin;
+import adopsiHewan.model.DashboardAdmin;
+import adopsiHewan.view.DashboardAdminView;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ASUS
  */
 public class DashboardAdminController {
-    private DashboardAdminDAO dba;
+    DashboardAdminView dbav;
+    DashboardAdminDAO dba;
+    DashboardAdminView frame;
+    InDashbAdmin implDashbAdmin;
+    //List<Mahasiswa> lb;
 
-    public DashboardAdminController(DashboardAdminDAO dao) {
-        this.dba = dao;
+    public DashboardAdminController(DashboardAdminView form) {
+        this.dbav = form;
+        implDashbAdmin = new DashboardAdminDAO();
     }
 
     public int getJumlahHewan() {
