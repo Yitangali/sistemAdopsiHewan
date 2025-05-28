@@ -27,6 +27,19 @@ public class AdopsiDAOImpl implements AdopsiDAO {
             stmt.executeUpdate();
         }
     }
+    
+    public void updateAdopsi(Adopsi adopsi) throws SQLException {
+        String query = "UPDATE adopsi SET id_user = ?, id_hewan = ?, tanggal_ajuan = ?, status = ?, catatan = ? WHERE id_adopsi = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, adopsi.getIdUser());
+            stmt.setInt(2, adopsi.getIdHewan());
+            stmt.setDate(3, new java.sql.Date(adopsi.getTanggalAjuan().getTime()));
+            stmt.setString(4, adopsi.getStatus());
+            stmt.setString(5, adopsi.getCatatan());
+            stmt.setInt(6, adopsi.getIdAdopsi());
+            stmt.executeUpdate();
+        }
+    }
 
     @Override
     public Adopsi getAdopsiById(int id) throws SQLException {
@@ -54,5 +67,29 @@ public class AdopsiDAOImpl implements AdopsiDAO {
             }
         }
         return adopsiList;
+    }
+    
+    @Override
+    public List<Adopsi> getAdopsiByStatus(String status) throws SQLException {
+        List<Adopsi> adopsiList = new ArrayList<>();
+        String query = "SELECT * FROM adopsi WHERE status = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, status);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    adopsiList.add(new Adopsi(
+                        rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"),
+                        rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")
+                    ));
+                }
+            }
+        }
+        return adopsiList;
+    }
+
+    @Override
+    public void updateAdopsi(int idAdopsi, String field, Object value) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

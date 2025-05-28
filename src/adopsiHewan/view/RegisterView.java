@@ -4,6 +4,8 @@
  */
 package adopsiHewan.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -49,8 +51,18 @@ public class RegisterView extends javax.swing.JFrame {
         });
 
         buttonRegister.setText("Register");
+        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegisterActionPerformed(evt);
+            }
+        });
 
         passwordRegister.setText("jPasswordField1");
+        passwordRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordRegisterActionPerformed(evt);
+            }
+        });
 
         passwordRegister2.setText("jPasswordField1");
         passwordRegister2.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +191,34 @@ public class RegisterView extends javax.swing.JFrame {
     private void txtAlamatRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatRegisterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlamatRegisterActionPerformed
+    
+    private void passwordRegisterActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+    }
+    
+    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
+        try {
+            boolean berhasil = controller.createUser(txtNamaRegister.getText(),
+                txtEmailRegister.getText(),
+                txtAlamatRegister.getText(),
+                new String(passwordRegister.getPassword(),
+                new String(passwordRegister2.getPassword(),
+                txtNoHPRegister.getText(),
+                comboRole.getSelectedItem().toString());
+                
+            if (berhasil) {
+                JOptionPane.showMessageDialog(this, "Registrasi berhasil!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Registrasi gagal.");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }  
+    }//GEN-LAST:event_buttonRegisterActionPerformed
+
+    private void passwordRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordRegisterActionPerformed
 
     /**
      * @param args the command line arguments
