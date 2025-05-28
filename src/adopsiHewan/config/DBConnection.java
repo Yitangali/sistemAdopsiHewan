@@ -1,27 +1,25 @@
 package adopsiHewan.config;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/adopsi_hewan";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-    private static Connection connection;
-
+    static Connection con;
     
-    public static Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection getConnection() {
+        if (con == null) {
+            MysqlDataSource data = new MysqlDataSource();
+            data.setDatabaseName("db_crud");
+            data.setUser("root");
+            data.setPassword("");
+            try {
+                con = data.getConnection();
+                System.out.println("koneksi berhasil!");
+            } catch(SQLException e) {
+                System.out.println("koneksi gagal");
+            }
         }
-        return connection;
-    }
-    
-    // Metode untuk menutup koneksi dengan aman
-    public static void closeConnection() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
+        return con;
     }
 }

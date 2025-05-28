@@ -5,6 +5,7 @@
 package adopsiHewan.view;
 
 import adopsiHewan.controller.DashboardAdminController;
+import adopsiHewan.config.DBConnection;
 import javax.swing.*;
 /**
  *
@@ -15,10 +16,12 @@ public class DashboardAdminView extends javax.swing.JFrame {
     /**
      * Creates new form DashboardAdminView
      */
-    private DashboardAdminController dba;
-    public DashboardAdminView(DashboardAdminController dba) {
+    DashboardAdminController dba;
+    DBConnection con;
+    
+    public DashboardAdminView() {
         initComponents();
-        this.dba = dba;
+        dba = new DashboardAdminController(this);
         loadDataDashboard();
     }
 
@@ -239,6 +242,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -263,6 +269,7 @@ public class DashboardAdminView extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
+  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DashboardAdminView().setVisible(true);
@@ -279,7 +286,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
         txtHewanDiadopsi.setText(jmlDiadopsi);
         
     }
-
+    
+    
+    
     /*private void setImageToLabel(JLabel label, String path) {
         File imgFile = new File(path);
         if (imgFile.exists()) {
