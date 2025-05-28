@@ -4,12 +4,12 @@ public class User {
     private int idUser;
     private String nama;
     private String email;
-    private String password;
     private String alamat;
+    private String password;
     private String noHp;
     private String role;
 
-    public User(int idUser, String nama, String email, String password, String alamat, String noHp, String role) {
+    public User(int idUser, String nama, String email, String alamat,String password, String noHp, String role) {
         this.idUser = idUser;
         this.nama = nama;
         this.email = email;
@@ -17,6 +17,10 @@ public class User {
         this.alamat = alamat;
         this.noHp = noHp;
         this.role = role;
+    }
+
+    public User() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     
