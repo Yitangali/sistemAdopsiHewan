@@ -8,16 +8,21 @@ import adopsiHewan.dao.UserDAO;
 import adopsiHewan.dao.impl.UserDAOImpl;
 import adopsiHewan.model.User;
 import adopsiHewan.util.Validator;
+import java.sql.SQLException;
 
 /**
  *
  * @author LENOVO
  */
-public class UserController {
-    private UserDAO userDAO = new UserDAOImpl();
+public class RegisterController {
+    private final UserDAO userDAO;
+
+    public RegisterController() throws SQLException {
+        this.userDAO = new UserDAOImpl();
+    }
     
-    public boolean register(String username, String email, String password, String confirmPassword) throws Exception {
-        if (!Validator.isNotEmpty(username) || !Validator.isNotEmpty(email) || !Validator.isNotEmpty(Password) || !Validator.isNotEmpty(confirmPassword)) {
+    public boolean register(int idUser, String nama, String email, String alamat, String password, String confirmPassword, String nohp, String role) throws Exception {
+        if (!Validator.isNotEmpty(email) || !Validator.isNotEmpty(password) || !Validator.isNotEmpty(confirmPassword)) {
             throw new Exception("Semua kolom harud diisi.");
         }
         
@@ -33,16 +38,13 @@ public class UserController {
             throw new Exception("Password konfirmasi berbeda dengan password yang ditulis.");
         }
         
-        if (userDAO.isUsernameExist(username)) {
-            throw new Exception("Username sudah digunakan, coba yang lain.");
-        }
-        
         if (userDAO.isEmailExist(email)) {
             throw new Exception("Email sudah digunakan, coba yang lain.");
         }
         
         User user = new User();
-        user.setIdUser(iduser);
+        user.setIdUser(idUser);
+        user.setNama(nama);
         user.setEmail(email);
         user.setAlamat(alamat);
         user.setPassword(password);
@@ -52,16 +54,5 @@ public class UserController {
         return userDAO.registerUser(user);
     }
     
-    public user login(String email, String password) throws Exception {
-        if (!Validator.isNotEmpty(email) || !Validator.isNotEmpty(password)) {
-            throw new Exception("Email dan password haru diisi.");
-        }
-        
-        User user = UserDAO.loginUser(email, password);
-        if (user == null) {
-            throw new Exception("Email atau Password salah.");
-        }
-        
-        return user;
-    }
+    
 }

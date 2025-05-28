@@ -36,8 +36,8 @@ public class UserDAOImpl implements UserDAO {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new User(rs.getInt("id_user"), rs.getString("nama"), rs.getString("email"), rs.getString("password"),
-                            rs.getString("alamat"), rs.getString("no_hp"), rs.getString("role"));
+                    return new User(rs.getInt("id_user"), rs.getString("nama"), rs.getString("email"), rs.getString("alamat"),
+                            rs.getString("password"), rs.getString("no_hp"), rs.getString("role"));
                 }
             }
         }
@@ -55,5 +55,25 @@ public class UserDAOImpl implements UserDAO {
             }
         }
         return users;
+    }
+
+    @Override
+    public User loginUser(String email, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isUsernameExist(String username) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isEmailExist(String email) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean registerUser(User user) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
