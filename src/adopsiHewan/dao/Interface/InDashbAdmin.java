@@ -5,6 +5,13 @@
 package adopsiHewan.dao.Interface;
 
 import java.util.List;
+import adopsiHewan.model.DashboardAdmin;
+import java.sql.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 /**
  *
@@ -18,7 +25,7 @@ public interface InDashbAdmin {
     String getLatestPetNameIn();
     String getLatestPetNameAdopted();
 
-    String getLatestPetImagePathIn();
-    String getLatestPetImagePathAdopted();
+    ImageIcon getLatestPetImageIn();
+    ImageIcon getLatestPetImageAdopted();
 }
 
