@@ -8,6 +8,9 @@ import adopsiHewan.controller.DashboardAdminController;
 import adopsiHewan.config.DBConnection;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 /**
  *
  * @author ASUS
@@ -20,6 +23,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
     
     DashboardAdminController dba;
     DBConnection con;
+    LocalDate tanggal = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", new Locale("id", "ID"));
+    String tanggalFormatted = tanggal.format(formatter);
     
     public DashboardAdminView() {
         initComponents();
@@ -27,6 +33,7 @@ public class DashboardAdminView extends javax.swing.JFrame {
         dba.tampilkanData();
         dba.tampilkanGambar1();
         dba.tampilkanGambar2();
+        txtTanggal.setText(tanggalFormatted);
     }
 
     /**
@@ -52,13 +59,13 @@ public class DashboardAdminView extends javax.swing.JFrame {
         txtHewanMasuk = new javax.swing.JLabel();
         txtHewanDiadopsi = new javax.swing.JLabel();
         txtTanggal = new javax.swing.JLabel();
-        txtJmlHewan = new javax.swing.JTextField();
-        txtJmlDiadopsi = new javax.swing.JTextField();
-        txtJmlUser = new javax.swing.JTextField();
-        txtNamaMasuk = new javax.swing.JTextField();
-        txtNamaDiadopsi = new javax.swing.JTextField();
         gambar1 = new javax.swing.JLabel();
         gambar2 = new javax.swing.JLabel();
+        txtJmlHewan = new javax.swing.JLabel();
+        txtJmlDiadopsi = new javax.swing.JLabel();
+        txtJmlUser = new javax.swing.JLabel();
+        txtNamaMasuk = new javax.swing.JLabel();
+        txtNamaDiadopsi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,19 +97,19 @@ public class DashboardAdminView extends javax.swing.JFrame {
 
         txtTanggal.setText("tanggal");
 
+        gambar1.setText("gambar1.jpg");
+
+        gambar2.setText("gambar2.jpg");
+
         txtJmlHewan.setText("...");
 
         txtJmlDiadopsi.setText("...");
 
         txtJmlUser.setText("...");
 
-        txtNamaMasuk.setText("...");
+        txtNamaMasuk.setText("nama masuk");
 
-        txtNamaDiadopsi.setText("...");
-
-        gambar1.setText("gambar1.jpg");
-
-        gambar2.setText("gambar2.jpg");
+        txtNamaDiadopsi.setText("nama diadopsi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,30 +154,25 @@ public class DashboardAdminView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtJmlHewan, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(339, 339, 339)
-                                .addComponent(txtJudulPage))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(220, 220, 220)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtHewanMasuk)
-                                            .addComponent(gambar1))
-                                        .addGap(132, 132, 132)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtHewanDiadopsi)
-                                            .addComponent(gambar2)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtNamaMasuk)
-                                            .addGap(132, 132, 132)
-                                            .addComponent(txtNamaDiadopsi))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGap(139, 139, 139)
-                                            .addComponent(txtTanggal)
-                                            .addGap(167, 167, 167))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtHewanMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(gambar1)
+                                    .addComponent(txtNamaMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(132, 132, 132)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtHewanDiadopsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(gambar2)
+                                    .addComponent(txtNamaDiadopsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(339, 339, 339)
+                                .addComponent(txtJudulPage)))
                         .addGap(0, 177, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(txtTanggal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,18 +189,18 @@ public class DashboardAdminView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtJudulJH)
                     .addComponent(titikDua1)
-                    .addComponent(txtJmlHewan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtJmlHewan))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtJudulJD)
                     .addComponent(titikDua2)
-                    .addComponent(txtJmlDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtJmlDiadopsi))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtJudulJU)
                     .addComponent(titikDua3)
-                    .addComponent(txtJmlUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(txtJmlUser))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtHewanMasuk)
                     .addComponent(txtHewanDiadopsi))
@@ -206,13 +208,13 @@ public class DashboardAdminView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gambar1)
                     .addComponent(gambar2))
-                .addGap(81, 81, 81)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNamaMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamaDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(txtNamaMasuk)
+                    .addComponent(txtNamaDiadopsi))
+                .addGap(66, 66, 66)
                 .addComponent(txtTanggal)
-                .addGap(50, 50, 50))
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -268,35 +270,35 @@ public class DashboardAdminView extends javax.swing.JFrame {
     private javax.swing.JLabel titikDua3;
     private javax.swing.JLabel txtHewanDiadopsi;
     private javax.swing.JLabel txtHewanMasuk;
-    private javax.swing.JTextField txtJmlDiadopsi;
-    private javax.swing.JTextField txtJmlHewan;
-    private javax.swing.JTextField txtJmlUser;
+    private javax.swing.JLabel txtJmlDiadopsi;
+    private javax.swing.JLabel txtJmlHewan;
+    private javax.swing.JLabel txtJmlUser;
     private javax.swing.JLabel txtJudulJD;
     private javax.swing.JLabel txtJudulJH;
     private javax.swing.JLabel txtJudulJU;
     private javax.swing.JLabel txtJudulPage;
-    private javax.swing.JTextField txtNamaDiadopsi;
-    private javax.swing.JTextField txtNamaMasuk;
+    private javax.swing.JLabel txtNamaDiadopsi;
+    private javax.swing.JLabel txtNamaMasuk;
     private javax.swing.JLabel txtTanggal;
     // End of variables declaration//GEN-END:variables
 
-    public JTextField getTxtJmlHewan() {
+    public JLabel getTxtJmlHewan() {
         return txtJmlHewan;
     }
     
-    public JTextField getTxtJmlDiadopsi() {
+    public JLabel getTxtJmlDiadopsi() {
         return txtJmlDiadopsi;
     }
     
-    public JTextField getTxtJmlUser() {
+    public JLabel getTxtJmlUser() {
         return txtJmlUser;
     }
     
-    public JTextField getTxtNamaMasuk() {
+    public JLabel getTxtNamaMasuk() {
         return txtNamaMasuk;
     }
     
-    public JTextField getTxtNamaDiadopsi() {
+    public JLabel getTxtNamaDiadopsi() {
         return txtNamaDiadopsi;
     }
     

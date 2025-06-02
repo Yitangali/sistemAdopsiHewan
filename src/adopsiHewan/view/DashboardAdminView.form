@@ -71,42 +71,33 @@
                               <Component id="txtJmlHewan" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
-                              <Component id="txtJudulPage" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtHewanMasuk" max="32767" attributes="0"/>
+                                  <Component id="gambar1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNamaMasuk" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtHewanDiadopsi" max="32767" attributes="0"/>
+                                  <Component id="gambar2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNamaDiadopsi" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtHewanMasuk" min="-2" max="-2" attributes="0"/>
-                                          <Component id="gambar1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtHewanDiadopsi" min="-2" max="-2" attributes="0"/>
-                                          <Component id="gambar2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="txtNamaMasuk" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                          <Component id="txtNamaDiadopsi" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                                          <Component id="txtTanggal" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                              <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
+                              <Component id="txtJudulPage" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="177" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
+              <Component id="txtTanggal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,7 +131,7 @@
                   <Component id="titikDua3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtJmlUser" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtHewanMasuk" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtHewanDiadopsi" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -150,14 +141,14 @@
                   <Component id="gambar1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="gambar2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtNamaMasuk" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNamaDiadopsi" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Component id="txtTanggal" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -233,31 +224,6 @@
         <Property name="text" type="java.lang.String" value="tanggal"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtJmlHewan">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtJmlDiadopsi">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtJmlUser">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaMasuk">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaDiadopsi">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="gambar1">
       <Properties>
         <Property name="text" type="java.lang.String" value="gambar1.jpg"/>
@@ -266,6 +232,31 @@
     <Component class="javax.swing.JLabel" name="gambar2">
       <Properties>
         <Property name="text" type="java.lang.String" value="gambar2.jpg"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtJmlHewan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtJmlDiadopsi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtJmlUser">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtNamaMasuk">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="nama masuk"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtNamaDiadopsi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="nama diadopsi"/>
       </Properties>
     </Component>
   </SubComponents>
