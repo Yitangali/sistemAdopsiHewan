@@ -4,6 +4,9 @@
  */
 package adopsiHewan.model;
 
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+
 /**
  *
  * @author ASUS
@@ -11,77 +14,80 @@ package adopsiHewan.model;
 public class DashboardAdmin {
 
     /**
-     * @return the userCount
+     * @return the jmlUser
      */
-    public int getUserCount() {
-        return userCount;
+    public Integer getJmlUser() {
+        return jmlUser;
     }
 
     /**
-     * @param userCount the userCount to set
+     * @param jmlUser the jmlUser to set
      */
-    public void setUserCount(int userCount) {
-        this.userCount = userCount;
+    public void setJmlUser(Integer jmlUser) {
+        this.jmlUser = jmlUser;
     }
 
     /**
-     * @return the adoptedCount
+     * @return the jmlDiadopsi
      */
-    public int getAdoptedCount() {
-        return adoptedCount;
+    public Integer getJmlDiadopsi() {
+        return jmlDiadopsi;
     }
 
     /**
-     * @param adoptedCount the adoptedCount to set
+     * @param jmlDiadopsi the jmlDiadopsi to set
      */
-    public void setAdoptedCount(int adoptedCount) {
-        this.adoptedCount = adoptedCount;
+    public void setJmlDiadopsi(Integer jmlDiadopsi) {
+        this.jmlDiadopsi = jmlDiadopsi;
     }
 
     /**
-     * @return the animalCount
+     * @return the jmlHewan
      */
-    public int getAnimalCount() {
-        return animalCount;
+    public Integer getJmlHewan() {
+        return jmlHewan;
     }
 
     /**
-     * @param animalCount the animalCount to set
+     * @param jmlHewan the jmlHewan to set
      */
-    public void setAnimalCount(int animalCount) {
-        this.animalCount = animalCount;
+    public void setJmlHewan(Integer jmlHewan) {
+        this.jmlHewan = jmlHewan;
     }
 
     /**
-     * @return the latestAdopted
+     * @return the baruDiadopsi
      */
-    public String getLatestAdopted() {
-        return latestAdopted;
+    public String getBaruDiadopsi() {
+        return baruDiadopsi;
     }
 
     /**
-     * @param latestAdopted the latestAdopted to set
+     * @param baruDiadopsi the baruDiadopsi to set
      */
-    public void setLatestAdopted(String latestAdopted) {
-        this.latestAdopted = latestAdopted;
+    public void setBaruDiadopsi(String baruDiadopsi) {
+        this.baruDiadopsi = baruDiadopsi;
     }
 
     /**
-     * @return the latestIn
+     * @return the baruMasuk
      */
-    public String getLatestIn() {
-        return latestIn;
+    public String getBaruMasuk() {
+        return baruMasuk;
     }
 
     /**
-     * @param latestIn the latestIn to set
+     * @param baruMasuk the baruMasuk to set
      */
-    public void setLatestIn(String latestIn) {
-        this.latestIn = latestIn;
+    public void setBaruMasuk(String baruMasuk) {
+        this.baruMasuk = baruMasuk;
     }
-    private int userCount;
-    private int adoptedCount;
-    private int animalCount;
-    private String latestAdopted;
-    private String latestIn;
+
+   
+    
+    private Integer jmlUser;
+    private Integer jmlDiadopsi;
+    private Integer jmlHewan;
+    private String baruDiadopsi;
+    private String baruMasuk;
 }

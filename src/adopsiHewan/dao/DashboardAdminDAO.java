@@ -6,8 +6,9 @@ package adopsiHewan.dao;
 
 //import mvc.Koneksi.Koneksi;
 //import mvc.Model.Mahasiswa;
-import adopsiHewan.dao.Interface.InDashbAdmin;
 import adopsiHewan.config.DBConnection;
+import adopsiHewan.model.DashboardAdmin;
+import adopsiHewan.dao.Interface.InDashbAdmin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 import java.io.File;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +35,8 @@ import java.util.logging.Logger;
  */
 public class DashboardAdminDAO implements InDashbAdmin{
     
-    private Connection connection;
-    private final String imagesFolder = "src/assets/";
+    Connection connection;
+    //private final String imagesFolder = "src/assets/";
 
     public DashboardAdminDAO() {
         connection = DBConnection.getConnection();
@@ -38,120 +44,144 @@ public class DashboardAdminDAO implements InDashbAdmin{
     
     @Override
     public int getAmountOfPets() {
-        return getAnimalCount();
+        int banyakHewan = 0;
+        String sql = "SELECT COUNT(*) FROM hewan"; // Menghitung jumlah baris dalam tabel
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                banyakHewan = rs.getInt(1); // Mengambil hasil COUNT(*)
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return banyakHewan;
     }
 
     @Override
     public int getAmountOfUsers() {
-        return getUserCount();
-    }
-
-    @Override
-    public int getAmountOfAdopteds() {
-        return getAdoptedAnimalCount();
-    }
-
-    @Override
-    public String getLatestPetNameIn() {
-        return getLatestAnimalName();
-    }
-
-    @Override
-    public String getLatestPetNameAdopted() {
-        return getLatestAdopted();
-    }
-
-    @Override
-    public String getLatestPetImagePathIn() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String getLatestPetImagePathAdopted() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    private int getUserCount() {
+        int banyakUser = 0;
         String sql = "SELECT COUNT(*) FROM user WHERE role = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "user");
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt(1);
+                    banyakUser = rs.getInt(1);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return banyakUser;
     }
 
-    
-    private int getAdoptedAnimalCount() {
+    @Override
+    public int getAmountOfAdopteds() {
+        int banyakHewanDiAdopsi = 0;
         String sql = "SELECT COUNT(*) FROM hewan WHERE status = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "sudah diadopsi"); // jika status adalah VARCHAR/ENUM
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt(1);
+                    banyakHewanDiAdopsi = rs.getInt(1);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return banyakHewanDiAdopsi;
     }
 
-    
-    private int getAnimalCount() {
-        String sql = "SELECT COUNT(*) FROM hewan"; // Menghitung jumlah baris dalam tabel
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt(1); // Mengambil hasil COUNT(*)
+    @Override
+    public String getLatestPetNameIn() {
+        String namaHewan = null;
+        String sql = "SELECT nama_hewan FROM hewan WHERE status != ? ORDER BY id_hewan DESC LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "sudah diadopsi"); // Menyesuaikan dengan format penyimpanan status di database
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    namaHewan = rs.getString("nama_hewan");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return namaHewan;
     }
 
-
-    public String getLatestAnimalName() {
-        String latestPetName = null;
-        String sql = "SELECT nama FROM hewan ORDER BY id_hewan DESC LIMIT 1"; // Ambil yang paling baru berdasarkan id_hewan
-
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()) {
-
-            if (rs.next()) {
-                latestPetName = rs.getString("nama"); // Ambil nama hewan terbaru sesuai kolom 'nama'
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return latestPetName; // Return nama hewan paling baru
-    }
-
-    
-    public String getLatestAdopted() {
-        String latestPetName = null;
-        String sql = "SELECT h.nama " +
+    @Override
+    public String getLatestPetNameAdopted() {
+        String namaHewan = null;
+        String sql = "SELECT h.nama_hewan " +
                     "FROM hewan h " +
                     "JOIN adopsi a ON h.id_hewan = a.id_hewan " +
-                    "JOIN riwayat_adopsi r ON a.id_adopsi = r.id_adopsi " +
-                    "ORDER BY r.tanggal_update DESC LIMIT 1";
-
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()) {
-
-            if (rs.next()) {
-                latestPetName = rs.getString("nama"); // Ambil nama hewan sesuai alias h.nama
+                    "WHERE h.status = ? " +
+                    "ORDER BY a.tanggal_ajuan DESC " +
+                    "LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "sudah diadopsi");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    namaHewan = rs.getString("nama_hewan");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return latestPetName;
+        return namaHewan;
+    }
+
+    @Override
+    public ImageIcon getLatestPetImageIn() {
+        ImageIcon icon = null;
+        String sql = "SELECT foto FROM hewan WHERE status = ? ORDER BY id_hewan DESC LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "belum diadopsi");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    byte[] imgBytes = rs.getBytes("foto");
+                    if (imgBytes != null) {
+                        InputStream in = new ByteArrayInputStream(imgBytes);
+                        BufferedImage bImage = ImageIO.read(in);
+                        icon = new ImageIcon(bImage);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return icon;
+    }
+
+    
+    /*public String () {
+        return "not implemented yet";
+    }*/
+
+    @Override
+    public ImageIcon getLatestPetImageAdopted() {
+        ImageIcon icon = null;
+        String sql = "SELECT h.foto " +
+                 "FROM hewan h " +
+                 "JOIN adopsi a ON h.id_hewan = a.id_hewan " +
+                 "WHERE h.status = ? " +
+                 "ORDER BY a.tanggal_ajuan DESC " +
+                 "LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "sudah diadopsi");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    byte[] imgBytes = rs.getBytes("foto");
+                    if (imgBytes != null) {
+                        InputStream in = new ByteArrayInputStream(imgBytes);
+                        BufferedImage bImage = ImageIO.read(in);
+                        icon = new ImageIcon(bImage);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return icon;
     }
     
 }
