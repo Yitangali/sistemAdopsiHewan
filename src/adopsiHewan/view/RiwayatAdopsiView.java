@@ -4,18 +4,32 @@
  */
 package adopsiHewan.view;
 
+import adopsiHewan.controller.RiwayatAdopsiController;
+import adopsiHewan.model.RiwayatAdopsi;
+import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 /**
  *
- * @author ASUS
+ * @author M Tiyas F Akbar
  */
 public class RiwayatAdopsiView extends javax.swing.JFrame {
-
+    private RiwayatAdopsiController controller = new RiwayatAdopsiController();
+    private DefaultTableModel tableModel = new DefaultTableModel();
     /**
-     * Creates new form RiwayatAdopsiView
+     * Creates new form RiwayatAdopsi
      */
     public RiwayatAdopsiView() {
         initComponents();
+        loadDataRiwayat();
+        setVisible(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +40,138 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtIdAdopsi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtTanggalUpdate = new javax.swing.JTextField();
+        cmbStatus = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        btnTambah = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableRiwayat = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("RIWAYAT ADOPSI");
+
+        jLabel2.setText("ID Adopsi");
+
+        jLabel3.setText("Status");
+
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dalam Proses", "Selesai" }));
+
+        jLabel4.setText("Tanggal Update");
+
+        btnTambah.setText("Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
+
+        tableRiwayat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID Riwayat", "ID Adopsi", "Tanggal Update", "Status"
+            }
+        ));
+        jScrollPane2.setViewportView(tableRiwayat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 776, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(305, 305, 305))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTambah)
+                .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel3)
+                        .addGap(29, 29, 29)
+                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel4)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnTambah)
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loadDataRiwayat() {
+        tableModel.setRowCount(0);
+        
+        List<RiwayatAdopsi> list = controller.getRiwayatList();
+        System.out.println("Memuat " + list.size() + " data ke tabel.");
+        
+        for (RiwayatAdopsi riwayat : list) {
+            System.out.println("Menambahkan ke tabel: " + riwayat.getIdRiwayat() + " | " + riwayat.getStatus());
+            tableModel.addRow(new Object[]{
+                riwayat.getIdRiwayat(), 
+                riwayat.getIdAdopsi(), 
+                riwayat.getTanggalUpdate(),
+                riwayat.getStatus()
+            });
+            System.out.println("Data ditambahkan ke tableModel!");
+        }
+        tableModel = new DefaultTableModel(new String[]{"ID Riwayat", "ID Adopsi", "Tanggal Update", "Status"}, 0);
+        tableModel.fireTableDataChanged();
+        tableRiwayat.repaint();
+    }
+    
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+        int idAdopsi = Integer.parseInt(txtIdAdopsi.getText());
+        String status = cmbStatus.getSelectedItem().toString();
+        
+        controller.tambahRiwayat(idAdopsi,status);
+        loadDataRiwayat();
+    }//GEN-LAST:event_btnTambahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -59,24 +190,36 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RiwayatAdopsiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RiwayatAdopsiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RiwayatAdopsiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RiwayatAdopsiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new RiwayatAdopsiView().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTambah;
+    private javax.swing.JComboBox<String> cmbStatus;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableRiwayat;
+    private javax.swing.JTextField txtIdAdopsi;
+    private javax.swing.JTextField txtTanggalUpdate;
     // End of variables declaration//GEN-END:variables
 }

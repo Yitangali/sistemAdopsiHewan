@@ -6,19 +6,36 @@ package adopsiHewan.view;
 
 import adopsiHewan.model.Adopsi;
 
+import adopsiHewan.controller.AdopsiController;
+import adopsiHewan.model.Adopsi;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.*;
+
 /**
  *
  * @author ASUS
  */
 public class ManajemenAdopsiView extends javax.swing.JFrame {
+    private AdopsiController adopsiController;
+    private javax.swing.JTextField txtIdAdopsi;
+    private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtHewan;
+    private javax.swing.JTextField txtTanggal;
+    private javax.swing.JComboBox<String> cmbStatusAdopsi;
+    private javax.swing.JTextField txtCatatan;
+
+
 
     /**
      * Creates new form ManajemenAdopsiView
      */
-    public ManajemenAdopsiView() {
+    public ManajemenAdopsiView() throws SQLException {
         initComponents();
+        adopsiController = new AdopsiController();
+        loadAdopsiData(); 
+        setupListeners();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +75,7 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        btnPerbarui = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,6 +136,12 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
             }
         });
 
+        txttanggal_ajuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttanggal_ajuanActionPerformed(evt);
+            }
+        });
+
         jLabel13.setText("MANAJEMEN ADOPSI");
 
         jLabel14.setText("Cari (ID adopsi)");
@@ -139,7 +162,7 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
             }
         });
 
-        btnPerbarui.setText("Perbarui");
+        btnRefresh.setText("Perbarui");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,7 +228,7 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
                                 .addGap(7, 7, 7)
                                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(98, 98, 98)
-                                .addComponent(btnPerbarui, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(jLabel14)
@@ -257,15 +280,17 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(txtCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUbah)
-                    .addComponent(btnHapus)
-                    .addComponent(btnPerbarui))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRefresh)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUbah)
+                        .addComponent(btnHapus)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -287,6 +312,10 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
     private void txtid_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtid_userActionPerformed
+
+    private void txttanggal_ajuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttanggal_ajuanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttanggal_ajuanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,16 +346,22 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new ManajemenAdopsiView().setVisible(true);
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
-        });
-    }
-
+        }; {
+            public void run() {
+                try {
+                    new ManajemenAdopsiView().setVisible(true); 
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Terjadi kesalahan SQL: " + e.getMessage());
+                        }
+            }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnPerbarui;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUbah;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -357,4 +392,68 @@ public class ManajemenAdopsiView extends javax.swing.JFrame {
     private javax.swing.JTextField txttanggal_ajuan;
     // End of variables declaration//GEN-END:variables
 
+    private void loadAdopsiData() {
+    try {
+        List<Adopsi> adopsiList = adopsiController.getAllAdopsi();
+        if (!adopsiList.isEmpty()) {
+            Adopsi adopsi = adopsiList.get(0); // Ambil data pertama
+            txtIdAdopsi.setText(String.valueOf(adopsi.getIdAdopsi()));
+            txtUser.setText(String.valueOf(adopsi.getIdUser()));
+            txtHewan.setText(String.valueOf(adopsi.getIdHewan()));
+            txtTanggal.setText(adopsi.getTanggalAjuan().toString());
+            cmbStatusAdopsi.setSelectedItem(adopsi.getStatus().name());
+            txtCatatan.setText(adopsi.getCatatan());
+        } else {
+            txtIdAdopsi.setText(""); // Kosongkan jika tidak ada data
+            txtUser.setText("");
+            txtHewan.setText("");
+            txtTanggal.setText("");
+            cmbStatusAdopsi.setSelectedIndex(0);
+            txtCatatan.setText("");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Gagal mengambil data: " + e.getMessage());
+    }
+}
+    
+    private void setupListeners() {
+        btnUbah.addActionListener(e -> ubahDataAdopsi());
+        btnHapus.addActionListener(e -> hapusDataAdopsi());
+        btnRefresh.addActionListener(e -> loadAdopsiData());
+    }
+
+    private void ubahDataAdopsi() {
+        try {
+        int idAdopsi = Integer.parseInt(txtIdAdopsi.getText());
+        Adopsi adopsi = adopsiController.getAdopsiById(idAdopsi);
+
+        if (adopsi != null) {
+            adopsi.setStatus(Adopsi.Status.valueOf(cmbStatusAdopsi.getSelectedItem().toString()));
+            adopsi.setCatatan(txtCatatan.getText());
+            adopsiController.updateAdopsi(adopsi);
+
+            JOptionPane.showMessageDialog(this, "Data berhasil diperbarui!");
+            loadAdopsiData();
+        }
+        new ManajemenAdopsiView().setVisible(true);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Kesalahan SQL: " + e.getMessage());
+    }
+  }
+
+    private void hapusDataAdopsi() {
+        try {
+            int idAdopsi = Integer.parseInt(txtIdAdopsi.getText());
+            int confirm = JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                adopsiController.deleteAdopsi(idAdopsi);
+                JOptionPane.showMessageDialog(this, "Data berhasil dihapus!");
+                loadAdopsiData();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Kesalahan SQL: " + e.getMessage());
+        }
+    }   
+    }
+    }
 }
