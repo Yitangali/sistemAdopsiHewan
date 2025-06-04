@@ -10,7 +10,7 @@ public class DBConnection {
     public static Connection getConnection() {
         if (con == null) {
             MysqlDataSource data = new MysqlDataSource();
-            data.setDatabaseName("db_crud");
+            data.setDatabaseName("adopsi_hewan");
             data.setUser("root");
             data.setPassword("");
             try {

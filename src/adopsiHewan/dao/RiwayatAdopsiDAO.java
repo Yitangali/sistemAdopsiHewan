@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sistem_adopsi.dao;
 
-import sistem_adopsi.model.RiwayatAdopsi;
+package adopsiHewan.dao;
+
+import adopsiHewan.model.RiwayatAdopsi;
+
 import java.util.List;
 
 /**

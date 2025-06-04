@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package sistem_adopsi.view;
+
+package adopsiHewan.view;
 
 
 import sistem_adopsi.controller.AdopsiController;
 import sistem_adopsi.model.Adopsi;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;

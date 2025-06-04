@@ -14,6 +14,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import adopsiHewan.controller.RiwayatAdopsiController;
+import adopsiHewan.model.RiwayatAdopsi;
+import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 /**
  *
  * @author M Tiyas F Akbar

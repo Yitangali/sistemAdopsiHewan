@@ -1,12 +1,13 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sistem_adopsi.controller;
+package adopsiHewan.controller;
 
-import sistem_adopsi.dao.AdopsiDAO;
-import sistem_adopsi.dao.impl.AdopsiDAOImpl;
-import sistem_adopsi.model.Adopsi;
+import adopsiHewan.dao.AdopsiDAO;
+import adopsiHewan.dao.impl.AdopsiDAOImpl;
+import adopsiHewan.model.Adopsi;
 import java.util.List;
 import java.util.Date;
 /**
@@ -45,3 +46,4 @@ public class AdopsiController {
     }    
     
 }
+
