@@ -7,21 +7,12 @@ public class Hewan {
     private int umur;
     private String kelamin;
     private String deskripsi;
-    private String foto;
+    private byte[] foto;    
     private String status;
-
-    public Hewan(int idHewan, String namaHewan, String jenis, int umur, String kelamin, String deskripsi, String foto, String status) {
-        this.idHewan = idHewan;
-        this.namaHewan = namaHewan;
-        this.jenis = jenis;
-        this.umur = umur;
-        this.kelamin = kelamin;
-        this.deskripsi = deskripsi;
-        this.foto = foto;
-        this.status = status;
-    }
-
-    // Getter dan Setter
+    
+    
+    
+    
     public int getIdHewan() { return idHewan; }
     public void setIdHewan(int idHewan) { this.idHewan = idHewan; }
 
@@ -40,8 +31,8 @@ public class Hewan {
     public String getDeskripsi() { return deskripsi; }
     public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }
 
-    public String getFoto() { return foto; }
-    public void setFoto(String foto) { this.foto = foto; }
+    public byte[] getFoto() { return foto; } 
+    public void setFoto(byte[] foto) { this.foto = foto; } 
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
