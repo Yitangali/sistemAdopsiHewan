@@ -2,7 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package adopsiHewan.view;
+package sistem_adopsi.view;
+
+import sistem_adopsi.controller.RiwayatAdopsiController;
+import sistem_adopsi.model.RiwayatAdopsi;
+import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import adopsiHewan.controller.RiwayatAdopsiController;
 import adopsiHewan.model.RiwayatAdopsi;
