@@ -2,92 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package adopsiHewan.view;
+package sistem_adopsi.view;
 
-import adopsiHewan.controller.AdopsiController;
-import adopsiHewan.model.Adopsi;
-import java.util.Date;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
+import sistem_adopsi.controller.AdopsiController;
+import sistem_adopsi.model.Adopsi;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.SQLException;
-
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 /**
  *
- * 
+ * @author M Tiyas F Akbar
  */
 public class ManajemenAdopsi extends javax.swing.JFrame {
-    private AdopsiController adopsiController;
+    private AdopsiController controller = new AdopsiController();
     private DefaultTableModel tableModel;
-    private JTextField txtIdUser;
-    private JTextField txtIdHewan;
-    private JTextField txtStatus;
-    private JTextField txtCatatan;
-
-    
-
     /**
-     * Creates new form ManajemenAdmin
+     * Creates new form ManajemenAdopsi
      */
     public ManajemenAdopsi() {
         initComponents();
-        adopsiController = new AdopsiController();
-        tableModel = (DefaultTableModel) adopsiTable.getModel();
-        cmbStatusAdopsi.addActionListener(e -> loadAdopsiData());
-        loadAdopsiData();
-        
-        btnUbah.addActionListener(e -> btnUbahActionPerformed(e));
-        
-        tableModel = new DefaultTableModel(new Object[]{"ID Adopsi", "ID User", "ID Hewan", "Tanggal Ajuan", "Status", "Catatan"}, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column != 0; // ID Adopsi tidak bisa diedit, lainnya bisa diedit
-            }
-        };
-        adopsiTable.setModel(tableModel);
-        
-        tableModel.addTableModelListener(e -> {
-            int row = e.getFirstRow();
-            int column = e.getColumn();
-
-            if (column >= 0) { // Pastikan ada perubahan
-                int idAdopsi = (int) tableModel.getValueAt(row, 0);
-                Object newValue = tableModel.getValueAt(row, column);
-
-                // Update di database
-                adopsiController.updateAdopsiField(idAdopsi, column, newValue);
-                System.out.println("Data di baris " + row + " kolom " + column + " diperbarui!");
-            }
-        });
-        
-        
-
-    }
-    
-    private void loadAdopsiData() {
-    tableModel.setRowCount(0); // Bersihkan tabel sebelum memuat data
-
-    String selectedStatus = cmbStatusAdopsi.getSelectedItem().toString();
-    List<Adopsi> adopsiList;
-
-    if (selectedStatus.equals("Semua")) {
-        adopsiList = adopsiController.getAllAdopsi(); // Tampilkan semua data
-    } else {
-        adopsiList = adopsiController.getAdopsiByStatus(selectedStatus); // Filter sesuai pilihan
-    }
-
-    for (Adopsi adopsi : adopsiList) {
-        tableModel.addRow(new Object[]{
-            adopsi.getIdAdopsi(), adopsi.getIdUser(),
-            adopsi.getIdHewan(), adopsi.getTanggalAjuan(),
-            adopsi.getStatus(), adopsi.getCatatan()
-        });
-        
-      }
-    
-    
+        loadData();
     }
 
     /**
@@ -99,30 +37,20 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        adopsiTable = new javax.swing.JTable();
+        tableAdopsi = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtCariIdAdopsi = new javax.swing.JTextField();
         btnUbah = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
-        btnRefresh = new javax.swing.JButton();
-        cmbStatusAdopsi = new javax.swing.JComboBox<>();
+        btnSetujui = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnCari = new javax.swing.JButton();
+        btnTolak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(749, 450));
 
-        jButton1.setText("Dashboard");
-
-        jButton2.setText("Manajemen Hewan");
-
-        jButton3.setText("Manajemen Adopsi");
-
-        jButton4.setText("Riwayat");
-
-        adopsiTable.setModel(new javax.swing.table.DefaultTableModel(
+        tableAdopsi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -130,38 +58,47 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "User", "Hewan", "Tanggal", "Status", "Catatan"
+                "ID Adopsi", "ID User", "ID Hewan", "Tanggal Ajuan", "Status", "Catatan"
             }
         ));
-        jScrollPane1.setViewportView(adopsiTable);
+        jScrollPane1.setViewportView(tableAdopsi);
 
-        jLabel1.setText("Daftar Adopsi");
+        jLabel1.setText("MANAJEMEN ADOPSI");
 
-        btnUbah.setText("Ubah");
+        jLabel2.setText("ID Adopsi");
+
+        btnUbah.setText("Ubah data");
         btnUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUbahActionPerformed(evt);
             }
         });
 
-        btnHapus.setText("Hapus");
-        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+        btnSetujui.setText("Setujui Adopsi");
+        btnSetujui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusActionPerformed(evt);
+                btnSetujuiActionPerformed(evt);
             }
         });
 
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Hapus");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        cmbStatusAdopsi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status", "Menunggu", "Ditolak", "Proses", "Selesai", "Dibatalkan" }));
-        cmbStatusAdopsi.addActionListener(new java.awt.event.ActionListener() {
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbStatusAdopsiActionPerformed(evt);
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        btnTolak.setText("Tolak Adopsi");
+        btnTolak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTolakActionPerformed(evt);
             }
         });
 
@@ -170,94 +107,155 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(300, 300, 300)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(txtCariIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnCari)
+                        .addGap(117, 117, 117))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(cmbStatusAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(337, 337, 337)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 141, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnSetujui, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnTolak, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUbah)
-                    .addComponent(btnHapus)
-                    .addComponent(btnRefresh)
-                    .addComponent(cmbStatusAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(txtCariIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnTolak)
+                    .addComponent(btnSetujui)
+                    .addComponent(btnUbah))
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        int selectedRow = adopsiTable.getSelectedRow();
-        
-    if (selectedRow >= 0) {
-        int idAdopsi = (int) tableModel.getValueAt(selectedRow, 0);
-        // Ambil data dari database melalui DAO, bukan langsung dari form
-        Adopsi adopsi = adopsiController.getAdopsiById(idAdopsi);
-        if (adopsi != null) {
-            adopsi.setStatus(txtStatus.getText());
-            adopsi.setCatatan(txtCatatan.getText());
-            
-            adopsiController.updateAdopsi(adopsi);
-            JOptionPane.showMessageDialog(this, "Data berhasil diperbarui!");
-            loadAdopsiData(); // Refresh tabel agar perubahan terlihat
-        } else {
-            JOptionPane.showMessageDialog(this, "Data tidak ditemukan di database!");
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu!");
+    private void loadData() {
+    DefaultTableModel model = (DefaultTableModel) tableAdopsi.getModel();
+    model.setRowCount(0);
+    List<Adopsi> list = controller.getAdopsiList();
+    for (Adopsi adopsi : list) {
+        model.addRow(new Object[]{
+            adopsi.getIdAdopsi(), adopsi.getIdUser(), adopsi.getIdHewan(),
+            adopsi.getTanggalAjuan(), adopsi.getStatus(), adopsi.getCatatan()
+        });
     }
+    
+    tableModel = new DefaultTableModel(
+    new String[]{"ID", "ID User", "ID Hewan", "Tanggal Ajuan", "Status", "Catatan"}, 0) {
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return column >= 4;
+    }
+};
+    
+}
+    
+    private void btnSetujuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetujuiActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableAdopsi.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAdopsi = Integer.parseInt(tableAdopsi.getValueAt(selectedRow, 0).toString());
+            controller.updateStatus(idAdopsi, "diterima");
+            loadData();
+        }
+    }//GEN-LAST:event_btnSetujuiActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+        String idAdopsiStr = txtCariIdAdopsi.getText();
+        
+        if (!idAdopsiStr.isEmpty()) {
+            try {
+                int idAdopsi = Integer.parseInt(idAdopsiStr);
+                List<Adopsi> hasilCari = controller.cariAdopsi(idAdopsi);
+                
+                if (!hasilCari.isEmpty()) {
+                    DefaultTableModel model = (DefaultTableModel) tableAdopsi.getModel();
+                    model.setRowCount(0);
+                    for (Adopsi adopsi : hasilCari) {
+                        model.addRow(new Object[] {
+                            adopsi.getIdAdopsi(), adopsi.getIdUser(), adopsi.getIdHewan(),
+                            adopsi.getTanggalAjuan(), adopsi.getStatus(), adopsi.getCatatan()
+                        });
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Data tidak ditemukan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Masukkan ID Adopsi yang valid!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Masukkan ID Adopsi untuk mencari!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableAdopsi.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAdopsi = Integer.parseInt(tableAdopsi.getValueAt(selectedRow, 0).toString());
+            String statusBaru = JOptionPane.showInputDialog(this, "Masukkan status baru:", tableAdopsi.getValueAt(selectedRow, 4).toString());
+            String catatanBaru = JOptionPane.showInputDialog(this, "Masukkan catatan baru:", tableAdopsi.getValueAt(selectedRow, 5).toString());
+
+            if (statusBaru != null && !statusBaru.trim().isEmpty()) {
+                controller.updateStatus(idAdopsi, statusBaru);
+            }
+            if (catatanBaru != null && !catatanBaru.trim().isEmpty()) {
+                controller.updateCatatan(idAdopsi, catatanBaru);
+            }
+            loadData(); // Refresh tabel setelah update
+        } else {
+            JOptionPane.showMessageDialog(this, "Pilih data yang ingin diubah!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnUbahActionPerformed
 
-    private void cmbStatusAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusAdopsiActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbStatusAdopsiActionPerformed
+        int selectedRow = tableAdopsi.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAdopsi = Integer.parseInt(tableAdopsi.getValueAt(selectedRow, 0).toString());
+            controller.hapusAdopsi(idAdopsi);
+            loadData();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
- 
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-
-    }//GEN-LAST:event_btnHapusActionPerformed
+    private void btnTolakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTolakActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableAdopsi.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAdopsi = Integer.parseInt(tableAdopsi.getValueAt(selectedRow, 0).toString());
+            controller.updateStatus(idAdopsi, "ditolak");
+            loadData(); // Refresh tabel setelah update
+        } else {
+            JOptionPane.showMessageDialog(this, "Pilih data yang ingin ditolak!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnTolakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,37 +274,35 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManajemenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManajemenAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManajemenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManajemenAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManajemenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManajemenAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManajemenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManajemenAdopsi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new ManajemenAdmin().setVisible(true);
+                new ManajemenAdopsi().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable adopsiTable;
-    private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSetujui;
+    private javax.swing.JButton btnTolak;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JComboBox<String> cmbStatusAdopsi;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableAdopsi;
+    private javax.swing.JTextField txtCariIdAdopsi;
     // End of variables declaration//GEN-END:variables
-
-  
 }

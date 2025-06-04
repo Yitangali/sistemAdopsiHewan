@@ -1,95 +1,105 @@
-package adopsiHewan.dao.impl;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package sistem_adopsi.dao.impl;
 
-import adopsiHewan.config.DBConnection;
-import adopsiHewan.dao.AdopsiDAO;
-import adopsiHewan.model.Adopsi;
-
+import sistem_adopsi.dao.AdopsiDAO;
+import sistem_adopsi.model.Adopsi;
+import sistem_adopsi.config.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author M Tiyas F Akbar
+ */
 public class AdopsiDAOImpl implements AdopsiDAO {
-    private final Connection conn;
-
-    public AdopsiDAOImpl() throws SQLException {
-        this.conn = DBConnection.getConnection();
-    }
-
-    @Override
-    public void addAdopsi(Adopsi adopsi) throws SQLException {
-        String query = "INSERT INTO adopsi (id_user, id_hewan, tanggal_ajuan, status, catatan) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, adopsi.getIdUser());
-            stmt.setInt(2, adopsi.getIdHewan());
-            stmt.setDate(3, new java.sql.Date(adopsi.getTanggalAjuan().getTime()));
-            stmt.setString(4, adopsi.getStatus());
-            stmt.setString(5, adopsi.getCatatan());
-            stmt.executeUpdate();
-        }
-    }
+    private Connection conn = DBConnection.getConnection();
     
-    public void updateAdopsi(Adopsi adopsi) throws SQLException {
-        String query = "UPDATE adopsi SET id_user = ?, id_hewan = ?, tanggal_ajuan = ?, status = ?, catatan = ? WHERE id_adopsi = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, adopsi.getIdUser());
-            stmt.setInt(2, adopsi.getIdHewan());
-            stmt.setDate(3, new java.sql.Date(adopsi.getTanggalAjuan().getTime()));
-            stmt.setString(4, adopsi.getStatus());
-            stmt.setString(5, adopsi.getCatatan());
-            stmt.setInt(6, adopsi.getIdAdopsi());
-            stmt.executeUpdate();
+    @Override
+    public void tambahAdopsi(Adopsi adopsi) {
+        String sql = "INSERT INTO adopsi (id_user, is_hewan, tanggal_ajuan, status, catatan) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, adopsi.getIdUser());
+            pstmt.setInt(2, adopsi.getIdHewan());
+            pstmt.setDate(3, new java.sql.Date(adopsi.getTanggalAjuan().getTime()));
+            pstmt.setString(4, adopsi.getStatus());
+            pstmt.setString(5, adopsi.getCatatan());
+            pstmt.executeUpdate();
+            System.out.println("Adopsi berhasil ditambahkan!");
+        } catch (SQLException e) {
+            System.out.println("Gagal tambah adopsi: " + e.getMessage());
         }
     }
-
+   
     @Override
-    public Adopsi getAdopsiById(int id) throws SQLException {
-        String query = "SELECT * FROM adopsi WHERE id_adopsi = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Adopsi(rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"),
-                            rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan"));
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public List<Adopsi> getAllAdopsi() throws SQLException {
-        List<Adopsi> adopsiList = new ArrayList<>();
-        String query = "SELECT * FROM adopsi";
-        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+    public List<Adopsi> getAllAdopsi() {
+        List<Adopsi> list = new ArrayList<>();
+        String sql = "SELECT * FROM adopsi";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                adopsiList.add(new Adopsi(rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"),
-                        rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")));
+                list.add(new Adopsi(rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"), 
+                                    rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")));
             }
+        } catch (SQLException e) {
+            System.out.println("Gagal ambil data adopsi: " + e.getMessage());
         }
-        return adopsiList;
+        return list;
     }
     
     @Override
-    public List<Adopsi> getAdopsiByStatus(String status) throws SQLException {
-        List<Adopsi> adopsiList = new ArrayList<>();
-        String query = "SELECT * FROM adopsi WHERE status = ?";
-
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, status);
-            try (ResultSet rs = stmt.executeQuery()) {
+    public List<Adopsi> getAdopsiById(int idAdopsi) {
+        List<Adopsi> list = new ArrayList<>();
+        String sql = "SELECT * FROM adopsi WHERE id_adopsi = ?";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idAdopsi);
+            try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    adopsiList.add(new Adopsi(
-                        rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"),
-                        rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")
-                    ));
+                    list.add(new Adopsi(rs.getInt("id_adopsi"), rs.getInt("id_user"), rs.getInt("id_hewan"), rs.getDate("tanggal_ajuan"), rs.getString("status"), rs.getString("catatan")));
                 }
             }
-        }
-        return adopsiList;
+        } catch (SQLException e) {
+            System.out.println("gagal mencari adopsi : " + e.getMessage());
+        } return list;
     }
-
+    
     @Override
-    public void updateAdopsi(int idAdopsi, String field, Object value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void updateStatus(int idAdopsi, String status) {
+        String sql = "UPDATE adopsi SET status = ? WHERE id_adopsi = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, idAdopsi);
+            pstmt.executeUpdate();
+            System.out.println("Status adopsi berhasil diperbarui!");
+        } catch (SQLException e) {
+            System.out.println("Gagal update status adopsi: " + e.getMessage());
+        }
     }
+    
+    @Override
+    public void updateCatatan(int idAdopsi, String catatan) {
+        String sql = "UPDATE adopsi SET catatan = ? WHERE id_adopsi = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, catatan);
+            pstmt.setInt(2, idAdopsi);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Gagal update catatan: " + e.getMessage());
+        }
+    }
+    
+    @Override
+    public void hapusAdopsi(int idAdopsi) {
+        String sql = "DELETE FROM adopsi WHERE id_adopsi = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idAdopsi);
+            pstmt.executeUpdate();
+            System.out.println("Adopsi berhasil dihapus!");
+        } catch (SQLException e) {
+            System.out.println("Gagal hapus adopsi: " + e.getMessage());
+        }
+    }
+    
 }
