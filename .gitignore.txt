@@ -1,0 +1,41 @@
+# Ignore compiled class files
+*.class
+
+# Ignore build and distribution folders
+/build/
+/dist/
+/nbproject/private/
+
+# Ignore generated jar, war, ear files
+*.jar
+*.war
+*.ear
+
+# NetBeans specific files
+/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# IDE/editor files
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Maven target folder (jika pakai Maven)
+target/
+
+# Gradle cache folder (jika pakai Gradle)
+.gradle/
+
