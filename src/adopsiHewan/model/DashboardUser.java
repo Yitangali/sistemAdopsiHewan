@@ -1,4 +1,4 @@
-package DashboardUser.model;
+package adopsiHewan.model;
 
 public class DashboardUser {
     private int idHewan;

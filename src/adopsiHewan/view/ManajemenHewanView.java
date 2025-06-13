@@ -7,6 +7,9 @@ package adopsiHewan.view;
 import javax.swing.*;
 import adopsiHewan.controller.ManajemenHewanController;
 import adopsiHewan.util.PhotoHandler;
+import adopsiHewan.view.DashboardAdminView;
+import adopsiHewan.view.ManajemenAdopsi;
+import adopsiHewan.view.RiwayatAdopsiView;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +25,9 @@ import java.util.List;
 public class ManajemenHewanView extends javax.swing.JFrame {
     
     ManajemenHewanController mhc;
+    DashboardAdminView dav;
+    ManajemenAdopsi mav;
+    RiwayatAdopsiView rav;
     PhotoHandler ph;
     
     /**
@@ -216,12 +222,27 @@ public class ManajemenHewanView extends javax.swing.JFrame {
         );
 
         buttonDashboard.setText("Dashboard");
+        buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDashboardActionPerformed(evt);
+            }
+        });
 
         buttonManajemenHewan.setText("Manajemen Hewan");
 
         buttonManajemenAdopsi.setText("Manajemen Adopsi");
+        buttonManajemenAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonManajemenAdopsiActionPerformed(evt);
+            }
+        });
 
         buttonRiwayat.setText("Riwayat");
+        buttonRiwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRiwayatActionPerformed(evt);
+            }
+        });
 
         buttonPilihFoto.setText("pilih foto");
         buttonPilihFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -453,40 +474,31 @@ public class ManajemenHewanView extends javax.swing.JFrame {
         txtCariNama.setText("nama hewan...");
     }//GEN-LAST:event_txtCariNamaFocusLost
 
+    private void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDashboardActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        dav = new DashboardAdminView();
+        dav.setVisible(true);
+    }//GEN-LAST:event_buttonDashboardActionPerformed
+
+    private void buttonManajemenAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManajemenAdopsiActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mav = new ManajemenAdopsi();
+        mav.setVisible(true);
+    }//GEN-LAST:event_buttonManajemenAdopsiActionPerformed
+
+    private void buttonRiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRiwayatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        rav = new RiwayatAdopsiView();
+        rav.setVisible(true);
+    }//GEN-LAST:event_buttonRiwayatActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManajemenHewanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManajemenHewanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManajemenHewanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManajemenHewanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManajemenHewanView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCariNama;

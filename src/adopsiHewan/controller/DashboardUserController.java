@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DashboardUser.controller;
+package adopsiHewan.controller;
 
-import DashboardUser.DAO.DashboardDAO;
-import DashboardUser.DAO.Interface.DasbUser;
-import DashboardUser.model.DashboardUser;
-import DashboardUser.view.DashboardUserView;
+import adopsiHewan.dao.DashboardDAO;
+import adopsiHewan.dao.Interface.DasbUser;
+import adopsiHewan.model.DashboardUser;
+import adopsiHewan.view.DashboardUserView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

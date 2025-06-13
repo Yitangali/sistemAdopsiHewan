@@ -6,6 +6,9 @@ package adopsiHewan.view;
 
 import adopsiHewan.controller.DashboardAdminController;
 import adopsiHewan.config.DBConnection;
+import adopsiHewan.view.ManajemenHewanView;
+import adopsiHewan.view.ManajemenAdopsi;
+import adopsiHewan.view.RiwayatAdopsiView;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -22,6 +25,9 @@ public class DashboardAdminView extends javax.swing.JFrame {
      */
     
     DashboardAdminController dba;
+    ManajemenHewanView mhv;
+    ManajemenAdopsi mav;
+    RiwayatAdopsiView rav;
     DBConnection con;
     LocalDate tanggal = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", new Locale("id", "ID"));
@@ -45,7 +51,6 @@ public class DashboardAdminView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtJudulPage = new javax.swing.JLabel();
         txtJudulJH = new javax.swing.JLabel();
         txtJudulJD = new javax.swing.JLabel();
         txtJudulJU = new javax.swing.JLabel();
@@ -63,14 +68,13 @@ public class DashboardAdminView extends javax.swing.JFrame {
         txtNamaMasuk = new javax.swing.JLabel();
         txtNamaDiadopsi = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        txtJudulPage = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JButton();
-        btnRiwayat = new javax.swing.JButton();
         btnManajemenHewan = new javax.swing.JButton();
         btnManajemenAdopsi = new javax.swing.JButton();
+        btnRiwayat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtJudulPage.setText("DASHBOARD");
 
         txtJudulJH.setText("Jumlah Hewan");
 
@@ -106,97 +110,119 @@ public class DashboardAdminView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        btnDashboard.setText("Dashboard");
-
-        btnRiwayat.setText("Riwayat");
-
-        btnManajemenHewan.setText("Manajemen Hewan");
-
-        btnManajemenAdopsi.setText("Manajemen Adopsi");
+        txtJudulPage.setForeground(new java.awt.Color(255, 255, 255));
+        txtJudulPage.setText("DASHBOARD");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnDashboard)
-                .addGap(18, 18, 18)
-                .addComponent(btnManajemenHewan)
-                .addGap(18, 18, 18)
-                .addComponent(btnManajemenAdopsi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRiwayat)
-                .addContainerGap())
+                .addGap(498, 498, 498)
+                .addComponent(txtJudulPage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDashboard)
-                    .addComponent(btnRiwayat)
-                    .addComponent(btnManajemenHewan)
-                    .addComponent(btnManajemenAdopsi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtJudulPage)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
+
+        btnDashboard.setText("Dashboard");
+
+        btnManajemenHewan.setText("Manajemen Hewan");
+        btnManajemenHewan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenHewanActionPerformed(evt);
+            }
+        });
+
+        btnManajemenAdopsi.setText("Manajemen Adopsi");
+        btnManajemenAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenAdopsiActionPerformed(evt);
+            }
+        });
+
+        btnRiwayat.setText("Riwayat");
+        btnRiwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRiwayatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtJudulJH)
-                        .addGap(18, 18, 18)
-                        .addComponent(titikDua1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtJmlHewan, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtJudulJH)
+                                .addGap(18, 18, 18)
+                                .addComponent(titikDua1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtJmlHewan, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtJudulJU, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(titikDua3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtJmlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtJudulJD)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(titikDua2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtJmlDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtHewanMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(gambar1)
+                                .addComponent(txtNamaMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtHewanDiadopsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(gambar2)
+                                .addComponent(txtNamaDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(96, 96, 96))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtJudulJU, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(titikDua3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtJmlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtJudulJD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(titikDua2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtJmlDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtHewanMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gambar1)
-                        .addComponent(txtNamaMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtHewanDiadopsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gambar2)
-                        .addComponent(txtNamaDiadopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(96, 96, 96))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(529, 529, 529)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtJudulPage)
-                    .addComponent(txtTanggal))
-                .addContainerGap(560, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(502, 502, 502)
+                                .addComponent(txtTanggal))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDashboard)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnManajemenHewan)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnManajemenAdopsi)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 497, Short.MAX_VALUE)
+                        .addComponent(btnRiwayat)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtJudulPage)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnManajemenHewan)
+                            .addComponent(btnManajemenAdopsi)
+                            .addComponent(btnRiwayat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTanggal))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
+                        .addComponent(btnDashboard)
+                        .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtHewanMasuk)
@@ -232,43 +258,32 @@ public class DashboardAdminView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnManajemenHewanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenHewanActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mhv = new ManajemenHewanView();
+        mhv.setVisible(true);
+    }//GEN-LAST:event_btnManajemenHewanActionPerformed
+
+    private void btnManajemenAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenAdopsiActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mav = new ManajemenAdopsi();
+        mav.setVisible(true);
+    }//GEN-LAST:event_btnManajemenAdopsiActionPerformed
+
+    private void btnRiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiwayatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        rav = new RiwayatAdopsiView();
+        rav.setVisible(true);
+    }//GEN-LAST:event_btnRiwayatActionPerformed
+
     
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DBConnection.getConnection();
-                new DashboardAdminView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDashboard;

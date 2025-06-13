@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package DashboardUser.view;
-import DashboardUser.controller.DashboardUserController;
+package adopsiHewan.view;
+import adopsiHewan.controller.DashboardUserController;
+import adopsiHewan.view.FormAdopsi;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,11 +15,12 @@ import javax.swing.JLabel;
  */
 public class DashboardUserView extends javax.swing.JFrame {
    private DashboardUserController controller;
+   FormAdopsi fav;
     /**
      * Creates new form DashboardUser
      */
     public DashboardUserView() {
-        initComponents();
+       initComponents();
        controller = new DashboardUserController(this);
        controller.loadDashboard();
     }
@@ -58,6 +60,7 @@ public class DashboardUserView extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        buttonFormAdopsi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +121,13 @@ public class DashboardUserView extends javax.swing.JFrame {
 
         jLabel28.setText("Status");
 
+        buttonFormAdopsi.setText("Form Adopsi");
+        buttonFormAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFormAdopsiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,17 +176,21 @@ public class DashboardUserView extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 541, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(0, 1094, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(buttonFormAdopsi)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(buttonFormAdopsi))
                 .addGap(9, 9, 9)
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38)
@@ -229,6 +243,13 @@ public class DashboardUserView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void buttonFormAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFormAdopsiActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        fav = new FormAdopsi();
+        fav.setVisible(true);
+    }//GEN-LAST:event_buttonFormAdopsiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +287,7 @@ public class DashboardUserView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonFormAdopsi;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

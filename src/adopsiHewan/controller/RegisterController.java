@@ -4,55 +4,75 @@
  */
 package adopsiHewan.controller;
 
-import adopsiHewan.dao.UserDAO;
+import adopsiHewan.dao.impl.UserDAO;
 import adopsiHewan.dao.impl.UserDAOImpl;
 import adopsiHewan.model.User;
+import adopsiHewan.util.PasswordUtils;
 import adopsiHewan.util.Validator;
-import java.sql.SQLException;
+import adopsiHewan.view.RegisterView;
+import adopsiHewan.view.LoginView;
+
+import javax.swing.*;
 
 /**
  *
  * @author LENOVO
  */
 public class RegisterController {
-    private final UserDAO userDAO;
-
-    public RegisterController() throws SQLException {
+    private RegisterView view;
+    private UserDAO userDAO;
+    
+    public RegisterController(RegisterView view) {
+        this.view = view;
         this.userDAO = new UserDAOImpl();
     }
     
-    public boolean register(int idUser, String nama, String email, String alamat, String password, String confirmPassword, String nohp, String role) throws Exception {
-        if (!Validator.isNotEmpty(email) || !Validator.isNotEmpty(password) || !Validator.isNotEmpty(confirmPassword)) {
-            throw new Exception("Semua kolom harud diisi.");
+    public void createUser() {
+        String nama = view.getNama();
+        String email = view.getEmail();
+        String alamat = view.getAlamat();
+        String noHp = view.getNoHp();
+        String password = view.getPassword();
+        String confirmPassword = view.getConfirmPassword();
+        
+        if (!Validator.isNotEmpty(nama) || !Validator.isNotEmpty(email) || !Validator.isNotEmpty(password)) {
+            JOptionPane.showMessageDialog(view, "Semua field wajib diisi.");
+            return;
         }
         
         if (!Validator.isEmailValid(email)) {
-            throw new Exception("Email tidak terdaftar.");
+            JOptionPane.showMessageDialog(view, "Format email tidak valid.");
+            return;
         }
         
         if (!Validator.isPasswordStrong(password)) {
-            throw new Exception("Password minimal 6 karakter.");
+            JOptionPane.showMessageDialog(view, "Password terlalu lemah (min 6 karakter)");
+            return;
         }
         
         if (!password.equals(confirmPassword)) {
-            throw new Exception("Password konfirmasi berbeda dengan password yang ditulis.");
+            JOptionPane.showMessageDialog(view, "Password tidak cocok.");
+            return;
         }
         
         if (userDAO.isEmailExist(email)) {
-            throw new Exception("Email sudah digunakan, coba yang lain.");
+            JOptionPane.showMessageDialog(view, "Email sudah terdaftar.");
+            return;
         }
         
+        String hashed = PasswordUtils.hashPassword(password);
         User user = new User();
-        user.setIdUser(idUser);
         user.setNama(nama);
         user.setEmail(email);
         user.setAlamat(alamat);
-        user.setPassword(password);
-        user.setNoHp(nohp);
-        user.setRole(role);
+        user.setNoHp(noHp);
+        user.setPassword(hashed);
+        user.setRole("user");
         
-        return userDAO.registerUser(user);
+        if (userDAO.registerUser(user)) {
+            JOptionPane.showMessageDialog(view, "Registrasi berhasil.");
+        } else {
+            JOptionPane.showMessageDialog(view, "Gagal mendaftar.");
+        }
     }
-    
-    
 }

@@ -4,34 +4,45 @@
  */
 package adopsiHewan;
 
-import adopsiHewan.model.AdopsiModel;
-import adopsiHewan.view.AdopsiView;
-import adopsiHewan.controller.AdopsiController;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.ParseException;
+import adopsiHewan.config.DBConnection;
+import adopsiHewan.view.DashboardAdminView;
+import adopsiHewan.view.LoginView;
 
+/**
+ *
+ * @author ASUS
+ */
 public class Main {
-    public static void main(String[] args) {
+        public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
-            // Parse the current timestamp
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-            Date currentTimestamp = sdf.parse("2025-05-27 09:19:13");
-            
-            // Current user
-            String currentUser = "YusufPandu";
-            
-            // Create MVC components
-            AdopsiModel model = new AdopsiModel();
-            AdopsiView view = new AdopsiView();
-            AdopsiController controller = new AdopsiController(model, view, currentUser, currentTimestamp);
-            
-            // Show view
-            view.setVisible(true);
-            
-        } catch (ParseException e) {
-            System.err.println("Error parsing timestamp: " + e.getMessage());
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                DBConnection.getConnection();
+                new LoginView().setVisible(true);
+            }
+        });
     }
 }

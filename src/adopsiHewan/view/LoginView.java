@@ -4,19 +4,66 @@
  */
 package adopsiHewan.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import adopsiHewan.controller.LoginController;
+import adopsiHewan.controller.ProfileController;
+import adopsiHewan.model.User;
+import adopsiHewan.view.ProfileView;
+import adopsiHewan.view.DashboardAdminView;
+import adopsiHewan.view.DashboardUserView;
+
 /**
  *
  * @author LENOVO
  */
 public class LoginView extends javax.swing.JFrame {
+    private LoginController loginController;
+    private ProfileController controller = new ProfileController();
+    DashboardAdminView dav;
+    DashboardUserView duv;
+    
 
-    /**
-     * Creates new form LoginView
-     */
     public LoginView() {
         initComponents();
+        //dav = new DashboardAdminView();
+        loginController = new LoginController(this);
+        
+        loginButton.addActionListener(e -> loginController.loginUser());
+        
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText().trim();
+                String password = new String(passwordField.getPassword());
+                
+                //Verif login
+                User user = controller.verifyLogin(email, password);
+                
+                if (user != null) {
+                    int loggedInUserId = user.getIdUser();
+                    //ProfileView profileView = new ProfileView(loggedInUserId);
+                    //profileView.setVisible(true);
+                    duv = new DashboardUserView();
+                    duv.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "nice"); //aslinya error
+                }
+            }
+        });
+        
     }
 
+    public String getEmail() {
+        return emailField.getText();
+    }
+    
+    public String getPassword() {
+        return new String(passwordField.getPassword());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,90 +73,107 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        txtUsernameLogin = new javax.swing.JTextField();
-        buttonLogin = new javax.swing.JButton();
-        passwordLogin = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
+        Password = new javax.swing.JLabel();
+        emailField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
+        Email.setText("Email");
+
+        Password.setText("Password");
+
+        emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameLoginActionPerformed(evt);
+                emailFieldActionPerformed(evt);
             }
         });
 
-        buttonLogin.setText("Login");
-
-        passwordLogin.setText("jPasswordField1");
-
-        jLabel1.setText("Usename/Email");
-
-        jLabel2.setText("Password");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsernameLogin)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(buttonLogin))
-                    .addComponent(passwordLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(337, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)))
-                .addGap(332, 332, 332))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(buttonLogin)
-                .addContainerGap(190, Short.MAX_VALUE))
-        );
+        loginButton.setText("Login");
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginButtonMouseClicked(evt);
+            }
+        });
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Password)
+                    .addComponent(Email))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(emailField)
+                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addContainerGap(351, Short.MAX_VALUE)
+                .addComponent(loginButton)
+                .addGap(327, 327, 327))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Email)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Password)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(loginButton)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameLoginActionPerformed
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameLoginActionPerformed
+    }//GEN-LAST:event_emailFieldActionPerformed
+
+    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+
+        // Verifikasi login
+        User user = controller.verifyLogin(email, password);
+
+        if (user != null) {
+            String role = user.getRole();
+            
+            if (role.equals("admin")) {
+                //new ProfileView(user.getIdUser()).setVisible(true); //akugatau nama filenya
+                dav = new DashboardAdminView();
+                dav.setVisible(true);
+            } else {
+                //new RegisterView(user.getIdUser()).setVisible(true); //ganti ke dashboard
+                duv = new DashboardUserView();
+                duv.setVisible(true);
+            }
+            
+            this.dispose();
+        } else {
+        JOptionPane.showMessageDialog(null, "nice"); //aslinya error
+        }
+    }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,19 +203,16 @@ public class LoginView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginView().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField passwordLogin;
-    private javax.swing.JTextField txtUsernameLogin;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Password;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
 }

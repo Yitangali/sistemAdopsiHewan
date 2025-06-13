@@ -2,13 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package adopsiHewan.dao.impl;
 
 import adopsiHewan.dao.AdopsiDAO;
 import adopsiHewan.model.Adopsi;
 import adopsiHewan.config.DBConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +88,6 @@ public class AdopsiDAOImpl implements AdopsiDAO {
         } catch (SQLException e) {
             System.out.println("Gagal update catatan: " + e.getMessage());
         }
-
     }
     
     @Override
@@ -105,5 +102,4 @@ public class AdopsiDAOImpl implements AdopsiDAO {
         }
     }
     
-
 }

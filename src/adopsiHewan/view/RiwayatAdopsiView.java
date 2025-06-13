@@ -2,20 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package sistem_adopsi.view;
-
-import sistem_adopsi.controller.RiwayatAdopsiController;
-import sistem_adopsi.model.RiwayatAdopsi;
-import javax.swing.table.DefaultTableModel;
-import java.util.Date;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
+package adopsiHewan.view;
 
 import adopsiHewan.controller.RiwayatAdopsiController;
 import adopsiHewan.model.RiwayatAdopsi;
+import adopsiHewan.view.DashboardAdminView;
+import adopsiHewan.view.ManajemenHewanView;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import javax.swing.*;
@@ -31,6 +23,8 @@ import java.util.List;
 public class RiwayatAdopsiView extends javax.swing.JFrame {
     private RiwayatAdopsiController controller = new RiwayatAdopsiController();
     private DefaultTableModel tableModel = new DefaultTableModel();
+    DashboardAdminView dav;
+    ManajemenHewanView mhv;
     /**
      * Creates new form RiwayatAdopsi
      */
@@ -40,7 +34,7 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
         setVisible(true);
     }
     
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +53,12 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableRiwayat = new javax.swing.JTable();
+        tableRiwayat = new javax.swing.JTable(tableModel);
+        btnShowAll = new javax.swing.JButton();
+        btnRiwayatAdopsi = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
+        btnManajemenhewan = new javax.swing.JButton();
+        btnManajemenAdopsi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,61 +92,105 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableRiwayat);
 
+        btnShowAll.setText("Show All");
+        btnShowAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowAllActionPerformed(evt);
+            }
+        });
+
+        btnRiwayatAdopsi.setText("Riwayat Adopsi");
+        btnRiwayatAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRiwayatAdopsiActionPerformed(evt);
+            }
+        });
+
+        btnDashboard.setText("Dashboard");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardActionPerformed(evt);
+            }
+        });
+
+        btnManajemenhewan.setText("Manajemen Hewan");
+        btnManajemenhewan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenhewanActionPerformed(evt);
+            }
+        });
+
+        btnManajemenAdopsi.setText("Manajemen Adopsi");
+        btnManajemenAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenAdopsiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 776, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(305, 305, 305))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambah)
-                .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1027, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(txtIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(60, 60, 60)
                         .addComponent(jLabel3)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(43, 43, 43)
                         .addComponent(jLabel4)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnShowAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)))
+                .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManajemenAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManajemenhewan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRiwayatAdopsi)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnTambah)
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(50, 50, 50)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnRiwayatAdopsi)
+                    .addComponent(btnDashboard))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManajemenhewan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManajemenAdopsi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTambah)
+                    .addComponent(txtTanggalUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(5, 5, 5)
+                .addComponent(btnShowAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -157,7 +200,6 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         
         List<RiwayatAdopsi> list = controller.getRiwayatList();
-        System.out.println("Memuat " + list.size() + " data ke tabel.");
         
         for (RiwayatAdopsi riwayat : list) {
             System.out.println("Menambahkan ke tabel: " + riwayat.getIdRiwayat() + " | " + riwayat.getStatus());
@@ -169,11 +211,9 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
             });
             System.out.println("Data ditambahkan ke tableModel!");
         }
-        tableModel = new DefaultTableModel(new String[]{"ID Riwayat", "ID Adopsi", "Tanggal Update", "Status"}, 0);
         tableModel.fireTableDataChanged();
         tableRiwayat.repaint();
     }
-    
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
         int idAdopsi = Integer.parseInt(txtIdAdopsi.getText());
@@ -182,6 +222,37 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
         controller.tambahRiwayat(idAdopsi,status);
         loadDataRiwayat();
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllActionPerformed
+        // TODO add your handling code here:
+        loadDataRiwayat();
+    }//GEN-LAST:event_btnShowAllActionPerformed
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        dav = new DashboardAdminView();
+        dav.setVisible(true);
+    }//GEN-LAST:event_btnDashboardActionPerformed
+
+    private void btnManajemenhewanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenhewanActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mhv = new ManajemenHewanView();
+        mhv.setVisible(true);
+    }//GEN-LAST:event_btnManajemenhewanActionPerformed
+
+    private void btnManajemenAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenAdopsiActionPerformed
+        // TODO add your handling code here:
+        new ManajemenAdopsi().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnManajemenAdopsiActionPerformed
+
+    private void btnRiwayatAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiwayatAdopsiActionPerformed
+        // TODO add your handling code here:
+        new RiwayatAdopsiView().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRiwayatAdopsiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +292,11 @@ public class RiwayatAdopsiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnManajemenAdopsi;
+    private javax.swing.JButton btnManajemenhewan;
+    private javax.swing.JButton btnRiwayatAdopsi;
+    private javax.swing.JButton btnShowAll;
     private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;

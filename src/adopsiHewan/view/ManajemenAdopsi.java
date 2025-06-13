@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 package adopsiHewan.view;
 
 
-import sistem_adopsi.controller.AdopsiController;
-import sistem_adopsi.model.Adopsi;
-
+import adopsiHewan.controller.AdopsiController;
+import adopsiHewan.model.Adopsi;
+import adopsiHewan.view.DashboardAdminView;
+import adopsiHewan.view.ManajemenHewanView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.List;
 /**
  *
@@ -22,6 +20,8 @@ import java.util.List;
 public class ManajemenAdopsi extends javax.swing.JFrame {
     private AdopsiController controller = new AdopsiController();
     private DefaultTableModel tableModel;
+    DashboardAdminView dav;
+    ManajemenHewanView mhv;
     /**
      * Creates new form ManajemenAdopsi
      */
@@ -49,6 +49,11 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
         btnTolak = new javax.swing.JButton();
+        btnShowAll = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
+        btnManajemenHewan = new javax.swing.JButton();
+        btnManajemenAdopsi = new javax.swing.JButton();
+        btnRiwayatAdopsi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,48 +109,102 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
             }
         });
 
+        btnShowAll.setText("Show All");
+        btnShowAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowAllActionPerformed(evt);
+            }
+        });
+
+        btnDashboard.setText("Dashboard");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardActionPerformed(evt);
+            }
+        });
+
+        btnManajemenHewan.setText("Manajemen Hewan");
+        btnManajemenHewan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenHewanActionPerformed(evt);
+            }
+        });
+
+        btnManajemenAdopsi.setText("Manajemen Adopsi");
+        btnManajemenAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManajemenAdopsiActionPerformed(evt);
+            }
+        });
+
+        btnRiwayatAdopsi.setText("Riwayat Adopsi");
+        btnRiwayatAdopsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRiwayatAdopsiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSetujui, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnTolak, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(172, 172, 172))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(btnShowAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtCariIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCari)
+                .addGap(176, 176, 176))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCariIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnCari)
-                        .addGap(117, 117, 117))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnSetujui, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnTolak, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(120, 120, 120)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManajemenAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManajemenHewan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(368, 368, 368)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRiwayatAdopsi)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDashboard)
+                    .addComponent(jLabel1)
+                    .addComponent(btnRiwayatAdopsi))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManajemenHewan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManajemenAdopsi)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCariIdAdopsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCari))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(btnCari)
+                    .addComponent(btnShowAll))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnTolak)
@@ -167,6 +226,7 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
             adopsi.getTanggalAjuan(), adopsi.getStatus(), adopsi.getCatatan()
         });
     }
+    model.fireTableDataChanged();
     
     tableModel = new DefaultTableModel(
     new String[]{"ID", "ID User", "ID Hewan", "Tanggal Ajuan", "Status", "Catatan"}, 0) {
@@ -259,6 +319,38 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTolakActionPerformed
 
+    private void btnShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllActionPerformed
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_btnShowAllActionPerformed
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        dav = new DashboardAdminView();
+        dav.setVisible(true);
+        
+    }//GEN-LAST:event_btnDashboardActionPerformed
+
+    private void btnManajemenHewanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenHewanActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mhv = new ManajemenHewanView();
+        mhv.setVisible(true);
+    }//GEN-LAST:event_btnManajemenHewanActionPerformed
+
+    private void btnManajemenAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManajemenAdopsiActionPerformed
+        // TODO add your handling code here:
+        new ManajemenAdopsi().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnManajemenAdopsiActionPerformed
+
+    private void btnRiwayatAdopsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiwayatAdopsiActionPerformed
+        // TODO add your handling code here:
+        new RiwayatAdopsiView().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRiwayatAdopsiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,8 +389,13 @@ public class ManajemenAdopsi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnManajemenAdopsi;
+    private javax.swing.JButton btnManajemenHewan;
+    private javax.swing.JButton btnRiwayatAdopsi;
     private javax.swing.JButton btnSetujui;
+    private javax.swing.JButton btnShowAll;
     private javax.swing.JButton btnTolak;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;

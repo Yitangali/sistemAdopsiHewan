@@ -4,22 +4,21 @@
  */
 package adopsiHewan.util;
 
-import java.util.regex.Pattern;
-/**
+/**s
  *
  * @author LENOVO
  */
 public class Validator {
     public static boolean isEmailValid(String email) {
-        String emailRegex = "passwordadopsi";
-        return Pattern.matches(emailRegex, email);
+        String regex = "^[A-Za-z0-0+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(regex);
     }
     
     public static boolean isPasswordStrong(String password) {
-        return password != null && password.length() >= 6;
+        return password.length() >= 6;
     }
     
-    public static boolean isNotEmpty(String text) {
-        return text != null && !text.trim().isEmpty();
+    public static boolean isNotEmpty(String s) {
+        return s != null & !s.trim().isEmpty();
     }
 }

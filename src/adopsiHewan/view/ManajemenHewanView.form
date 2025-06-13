@@ -480,6 +480,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Dashboard"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDashboardActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonManajemenHewan">
       <Properties>
@@ -490,11 +493,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manajemen Adopsi"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonManajemenAdopsiActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonRiwayat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Riwayat"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRiwayatActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonPilihFoto">
       <Properties>
